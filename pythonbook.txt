@@ -1,0 +1,414 @@
+Encapusalation:-
+***********************************
+=>encapusalation is store data and members together.
+=>By this we may security 
+=>it has the following acess modifers 
+=>1.public  => available any where ,by default it is public
+=>2.private  => with the class only ,we can declare by prefix _(underscore)
+=>3.protected => with the class and the child classes or dervied class 
+  by prefixing using --(double underscore)
+=>example:- 
+public
+===============================================
+class Public:
+    
+    def public_modifer(self):
+       self._name="hi"
+        
+class pri:
+    @staticmethod
+    def m():
+        print(obj._name)
+ 
+obj=Public()
+obj.public_modifer()
+o=pri()
+o.m()
+========================================================
+Abstraction:
+**************************
+=>if we want to hide the data or the user should not know the internal
+function then we should go for Abstraction
+=>To implement the abstraction we need to import the abc module
+from that we need to import abstract method and abc class
+=>Ex:
+========
+from abc import *
+class test(ABC):
+    @abstractmethod
+    def m():
+        pass
+class test1(test):
+    @staticmethod
+    def m():
+        print("i from the abstract class method")
+t=test1()
+t.m()
+0utput:
+==============
+i from the abstract class method
+=>if we declare normal method as abstractmethod then we get error
+as:-TypeError: Can't instantiate abstract class test1 with abstract method 
+=>we canot create objects for abstract method
+=>for suppose we want to create the object then :-
+===================================================
+from abc import *
+class test(ABC):
+    @abstractmethod
+    def m():
+        pass
+class test1(test):
+    @staticmethod
+    def m():
+       print("i from the abstract class method")
+t=test1()
+t.m()
+t1=test()
+=>
+we get error as:-Can't instantiate abstract class test with abstract method m
+*=========================================================================*
+interfaces:-
+===================
+=>interfaces are not present in python
+=>but we implement by using abstract class
+=>in this we need declare the all class abstract methods only
+=>if we write normal methods in abstract classes then it will
+not get the error but it is not a interfaces
+===============================================================================================
+Iterators:-
+======================================
+=>Iterators are iteratable objects
+=>we list is a iterable object
+=>when we call list all elements are going to print at a time
+but we need one at a time then we use Iterators
+=>we create iterator by using iter function and we can call them by 
+using variablename.__next()__ or next(iterablevariable)
+=>We can also create our own iterators by rewriting the iter() and next()
+functions.
+=>iter() function will just return the iterable objects.
+=>next() function will return the values.
+=>for example :=
+=========
+class test:
+    def __init__(self):                 
+        self.pages=1 
+    def __iter__(self):
+        return self
+    def __next__(self):
+        if self.pages<=10:
+
+           value=self.pages
+           self.pages+=1
+           return value
+        else:
+            raise StopIteration
+obj=test()
+for i in obj:
+    print(i)
+output:-
+======
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+example:-
+=========
+l=[1,2,3,4,5]
+itr=iter(l)
+print(next(itr))
+print(next(itr))
+print(next(itr))
+print(next(itr))
+print(next(itr))
+print(next(itr))
+output:-
+==========
+1
+2
+3
+4
+5
+Traceback (most recent call last):
+  File "f:\pythonpraticeprograms\sysballus.py", line 8, in <module>
+    print(next(itr))
+StopIteration
+=>or we can call like this also:
+lst=[1,2,3,4,5]
+itr=iter(lst)
+print(itr.__next__())
+o/p:-
+=====
+1 
+Inheritance:-
+=============================================
+=>Inheritance means getting the properties from one to another class.
+=>for example generally consider the relationship between parents and child,
+where child is Inheritaning the properites from the parents.
+=>smilarly we can achieve the Inheritance in python also .
+=>coming to programatic way the definitation of the Inheritance is
+derving the properites from one class to another class.
+=>where the class which is derving the properites is called as "childclass" or "subclass"
+or dervied class.
+=>The class which from which we are derving is known as "parentclass" or "superclass".
+=>In python all types of Inheritances are possible but not cyclic inheritance.
+=>Types of inheritances:-
+=================================================
+=>single inheritance:-
+************************************
+=>only one parent and one child.
+=>example:-
+===============
+class parent():
+    @staticmethod
+    def m():
+        print("i am from the parent class")
+class child(parent):
+    @staticmethod
+    def m1():
+        print("i am from the child class")
+child_obj=child()
+child_obj.m()#calling  parent method m from child class
+child_obj.m1()#child class calling it's own method m1
+output:-
+========
+i am from the parent class
+i am from the child class
+================================
+=>multilevel inheritance:-
+===============================
+=>means derving properites from more than one class.
+=>example:-
+===============
+class parent_1():
+    @staticmethod
+    def m():
+        print("i am from the parent1 class")
+class parent_2():
+    @staticmethod
+    def m1():
+        print("i am from the parent2 class")
+class child(parent_1,parent_2):
+    @staticmethod
+    def m2():
+        print("i am from the child class")
+child_obj=child()
+child_obj.m()#calling  parent1 method m from child class
+child_obj.m1()#calling  parent2 method m1 from child class
+child_obj.m2()#child class calling it's own method m1
+output:-
+=============
+i am from the parent1 class
+i am from the parent2 class
+i am from the child class
+===============================
+Multiple inheritance:-
+===================================================
+=>multiple inheritance derving classes from already dervied
+ classes.
+ =>example:-
+ ==================
+ class parent():
+    @staticmethod
+    def m():
+        print("i am from the parent1 class")
+class dervied_class_1(parent):
+    @staticmethod
+    def m1():
+        print("i am from the dervied class one class")
+class dervied_class_2(dervied_class_1):
+    @staticmethod
+    def m2():
+        print("i am from the dervied class 2 class")
+obj1=parent()
+obj2=dervied_class_1()
+obj3=dervied_class_2()
+obj1.m()#calling parent class method m from the dervied class 1
+obj2.m()#calling parent class method m from the dervied class 2
+obj2.m1()#calling parent class method m1from the dervied class 2
+=>output:-
+==================
+i am from the parent1 class
+i am from the parent1 class
+i am from the dervied class one class
+=>NOTE:-
+=>obj1 can call only its methods in its own class i.e parent class.
+=>obj2 can call its methods in its own class i.e parent class and also
+from dervied class i.e dervied_class_1.
+=>obj3 can call its methods in its own class i.e parent class and also
+from dervied class i.e dervied_class_1 and also methods in dervied_class_2.
+====================================================================
+Hierarchical Inheritance:-
+====================================
+=>When more than one derived classes are created from a 
+single base this type of inheritance is called hierarchical inheritance. 
+In this program, we have a parent (base) class and two 
+child (derived) classes.
+=>example:-
+=====================================
+# Python program to demonstrate
+# Hierarchical inheritance
+# Base class
+class Parent:
+	def m1(self):
+		print("This method is in parent class.")
+
+# Derived class1
+class Child1(Parent):
+	def m2(self):
+		print("This method is in child 1.")
+
+# Derivied class2
+class Child2(Parent):
+	def m3(self):
+		print("This method is in child 2.")
+
+# Driver's code
+object1 = Child1()
+object2 = Child2()
+object1.m1()#calling m1 from  child class one.
+object1.m2()#calling m2 from  child class one.
+object2.m1()#calling m1 from  child class 2.
+object2.m3()#calling m2 from  child class 2 .
+output:-
+==================================
+This method is in parent class.
+This method is in child 1.
+This method is in parent class.
+This method is in child 2.
+=============================================================================
+Hybrid Inheritance:- 
+==========================================================================
+=>Inheritance consisting of multiple types of inheritance is called hybrid inheritance.
+=>example:-
+========================
+# Python program to demonstrate
+# hybrid inheritance
+class School:
+	def m1(self):
+		print("This method is in school.")
+
+class Student1(School):
+	def m2(self):
+		print("This method is in student 1. ")
+
+class Student2(School):
+	def m3(self):
+		print("This method is in student 2.")
+
+class Student3(Student1, School):
+	def m4(self):
+		print("This method is in student 3.")
+
+# Driver's code
+object = Student3()
+object.m1()
+object.m2()
+=================================
+output:-
+==================================
+This method is in school.
+This method is in student 1. 
+======================================
+cyclic inheritance:-
+===============================
+=> Is not possible in python.
+NOTE:-
+============================
+=>when we want to inherit the parent class constuctor then we need to use the 
+concept of the super() method. 
+=>if the constructor present in parent class and not in child class then constructor
+in parent class executes while Inheriting the properites automatically.
+=>if constructor present in both parent and child class then constructor in child class
+only executes.
+=>if the constructor present only in the child class then child class constructor
+will be executed.
+=>if we want both constructors or especisally the parent class constructor then we should 
+use super method.
+=>example:-
+===========================
+class parent:
+    def __init__(self):
+        print(" i am a constructor")
+class child(parent):
+    def __init__(self):
+        print("i am a constructor from child class")
+        super().__init__()
+    def m(self):
+        print(" i am from child class")
+        
+obj=child()
+output:-
+============================
+i am a constructor from child class
+i am a constructor
+======================================================
+=>method resoultion order:-
+=======================================
+=>if we have same name in both the parent and class then execution of methods 
+child class method executes .
+=>if we want to the parent class method which has same name then we should 
+use super method.
+=>example:-
+===========================
+class parent:
+    def m(self):
+        print(" i am parent class method")
+class child(parent):
+    def m(self):
+        print(" i am from child class method ")
+        super().m()      #calling parent method which has same name with super method 
+obj=child()
+obj.m()
+output:-
+===================
+i am from child class method 
+i am parent class method
+========================================
+=> if we have multilevel inheritance then both the parnet classes 
+have same method then the child class has no same method but Inheriting
+the methods applicable to child class also,if we call the methods then 
+execution of method takes place by method resoultion order i.e left to right.
+=>example:-
+======================
+class parent1:
+    def m(self):
+        print(" i am parent1 class method")
+class parent2():
+    def m(self):
+        print(" i am from parent2 class method ")
+class child(parent1,parent2):
+    pass   
+obj=child()
+obj.m()
+output:-
+============================
+i am parent1 class method
+==============================================================
+=> to known that which method will executes frist then we can use mro() or __mro__
+predefined things.
+=>example:-
+===========================
+class parent1:
+    def m(self):
+        print(" i am parent1 class method")
+class parent2():
+    def m(self):
+        print(" i am from parent2 class method ")
+class child(parent1,parent2):
+    pass   
+obj=child()
+obj.m()
+print(child.__mro__)
+print(child.mro())
+output:-
+==================
+i am parent1 class method
+(<class '__main__.child'>, <class '__main__.parent1'>, <class '__main__.parent2'>, <class 'object'>)
+[<class '__main__.child'>, <class '__main__.parent1'>, <class '__main__.parent2'>, <class 'object'>]
+===============================================================================================
