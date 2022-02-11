@@ -31,6 +31,7 @@ Abstraction:
 function then we should go for Abstraction
 =>To implement the abstraction we need to import the abc module
 from that we need to import abstract method and abc class
+=>Abstraction class contains both abstract methods and normal methods.
 =>Ex:
 ========
 from abc import *
